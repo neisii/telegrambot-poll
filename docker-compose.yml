@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  #we'll call our service minio just like the --name argument above
+  minio:
+    #next we use the latest image:
+    image: minio/minio:latest
+    #then we specify the command to run inside the container
+    command: server /data --address=":9000" --console-address=":9001"
+    #next we map a minio_storage volume to /data which is slightly different
+    #from the original command above
+    volumes:
+      - minio_storage:/data
+    #last but not least we expose the same ports as above:
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+
+#here we define the minio volume that gets mapped into the container
+volumes:
+  minio_storage:
