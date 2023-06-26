@@ -77,23 +77,38 @@ function isHoliday() {
 function makeCoffee() {
   uri=https://api.telegram.org/bot
   token=${{BOT_TOKEN}}
-  api=/sendPoll
+  chatId=${{CHAT_ID}}
+  pollApi=/sendPoll
   content_type=application/json
 
-  question="<커피 설문> from Shell"
-  chat_id="${yourchatid}"
+  question=$'<커피 설문> from Jenkins'
+  
+  if [ "${testMode}" == true ]; then
+    chat_id=${chatId} # 1대1
+    question=$(echo "$question for TEST")
+  else
+  chat_id=${chatId} # 1대1
+  fi
 
   # 선택지
-  options=[\"\(I\)아메리카노\",\"\(\I\)라떼\",\"\(I\)캐모마일\",\"\(H\)아메리카노\",\"\(H\)라떼\",\"\(직접입력\)\"]
+  options=[\"\(I\)아메리카노\",\"\(\I\)라떼\",\"\(I\)캐모마일\",\"\(I\)페퍼민트\",\"\(H\)아메리카노\",\"\(H\)라떼\",\"\(I\)돌체라떼\",\"\(I\)콜드브루\",\"\(직접입력\)\"]
 #  echo $options
 
   data="{\"chat_id\":\""$chat_id"\", \"is_anonymous\": false, \"question\": \""$question"\", \"options\": "$options"}"
 #  echo "request body >> \n$data"
 
-  curl -w "{} \n결과>> %{http_code}\n" -H "Content-Type: $content_type" -d "$data" $uri$token$api
+  curl -w "{} \n결과>> %{http_code}\n" -H "Content-Type: $content_type" -d "$data" $uri$token$pollApi
+  
+  # 메뉴판 전송
+  messageApi=/sendMessage
+  message="메뉴판\n[https://i.imgur.com/gBdtNeX.png](https://i.imgur.com/gBdtNeX.png)"
+  data="{\"chat_id\":\""$chat_id"\", \"text\": \"$message\",\"parse_mode\": \"Markdown\" }"
+  curl -w "{} \n결과>> %{http_code}\n" -H "Content-Type: $content_type" -d "$data" $uri$token$messageApi
+  
 }
 
 # End function
+
 
 main "$@" #; exit
 
