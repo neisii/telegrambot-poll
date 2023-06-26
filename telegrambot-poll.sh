@@ -31,7 +31,7 @@ function main() {
 # Confirm holidays data and return whether or not.
 ########################################################################
 function isHoliday() {
-  serviceKey=${yourservicekey} # data.go.kr API Service Key
+  serviceKey=${{DATA_GO_KR_SERVICEkEY}} # data.go.kr API Service Key
   uri=http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService
   api=/getRestDeInfo
 
@@ -76,7 +76,7 @@ function isHoliday() {
 ########################################################################
 function makeCoffee() {
   uri=https://api.telegram.org/bot
-  token=${yourbottoken}
+  token=${{BOT_TOKEN}}
   api=/sendPoll
   content_type=application/json
 
