@@ -1,54 +1,62 @@
-name: Send poll
+# name: Send poll
+# on:
+#   push:
+#     branches:
+#       - main
+#   schedule:
+#     - cron: "* * * * *"
+# jobs:
+#   executeShell:
+#     runs-on: docker
+#     steps:
+#       - name: Send polllll
+#         uses: neisii/telegrambot-poll@main
+#         env:
+#           CHAT_ID: ${{ secrets.CHAT_ID }}
+#           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+#           DATA_GO_KR_SERVICEKEY: ${{ secrets.DATA_GO_KR_SERVICEKEY }}
+#           TIMEZONE: Asia/Seoul
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches:
-      - main
-  schedule:
-    - cron: "* * * * *"
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  update-gist:
-    runs-on: docker
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Send polllll
-        uses: neisii/telegrambot-poll@main
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: neisii/telegrambot-poll@main
         env:
           CHAT_ID: ${{ secrets.CHAT_ID }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           DATA_GO_KR_SERVICEKEY: ${{ secrets.DATA_GO_KR_SERVICEKEY }}
           TIMEZONE: Asia/Seoul
-# # This is a basic workflow to help you get started with Actions
 
-# name: CI
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
 
-# # Controls when the workflow will run
-# on:
-#   # Triggers the workflow on push or pull request events but only for the "main" branch
-#   push:
-#     branches: [ "main" ]
-#   pull_request:
-#     branches: [ "main" ]
-
-#   # Allows you to run this workflow manually from the Actions tab
-#   workflow_dispatch:
-
-# # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-# jobs:
-#   # This workflow contains a single job called "build"
-#   build:
-#     # The type of runner that the job will run on
-#     runs-on: ubuntu-latest
-
-#     # Steps represent a sequence of tasks that will be executed as part of the job
-#     steps:
-#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#       - uses: actions/checkout@v3
-
-#       # Runs a single command using the runners shell
-#       - name: Run a one-line script
-#         run: echo Hello, world!
-
-#       # Runs a set of commands using the runners shell
-#       - name: Run a multi-line script
-#         run: |
-#           echo Add other actions to build,
-#           echo test, and deploy your project.
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+          echo "CHAT_ID=$CHAT_ID" >> .env
+          echo "BOT_TOKEN=$BOT_TOKEN" >> .env
+          echo "DATA_GO_KR_SERVICEKEY=$DATA_GO_KR_SERVICEKEY" >> .env
