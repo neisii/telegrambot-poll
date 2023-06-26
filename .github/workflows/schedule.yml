@@ -14,12 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - uses: actions/checkout@v2
-    - uses: neisii/telegrambot-poll@main
+    - uses: actions/checkout@v3
     - name: Display the path
       run: |
         echo $PATH
       shell: bash
+    - uses: neisii/telegrambot-poll@main
     - name: Execute Shell script
       run: |
          chmod +x ./public/scripts/telegrambot-poll.sh
