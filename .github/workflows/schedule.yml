@@ -15,7 +15,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Display the path
-      run: echo $PATH
+      run: |
+        echo $PATH
+        sh telegrambot-poll.sh
       shell: bash
 # # This is a basic workflow to help you get started with Actions
 
