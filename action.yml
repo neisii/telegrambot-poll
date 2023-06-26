@@ -5,5 +5,5 @@ branding:
   icon: "activity"
   color: "blue"
 runs:
-  using: "docker"
+  using: "ubuntu-latest"
   main: "telegrambot-poll.sh"
