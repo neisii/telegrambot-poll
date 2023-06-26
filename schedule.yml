@@ -1,4 +1,11 @@
-steps:
+name: 'Telegram-bot-api'
+
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      - main
+  steps:
   - name: Display the path
     run: echo $PATH
     shell: bash
