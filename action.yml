@@ -1,9 +1,0 @@
-name: "telegrambot-poll"
-author: "neisii"
-description: "Let's check out in gist"
-branding:
-  icon: "activity"
-  color: "blue"
-runs:
-  using: "docker"
-  main: "docker-compose.yml"
