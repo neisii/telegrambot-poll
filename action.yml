@@ -6,4 +6,4 @@ branding:
   color: "blue"
 runs:
   using: "docker"
-  main: "telegrambot-poll.sh"
+  main: "docker-compose.yml"
