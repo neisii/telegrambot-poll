@@ -2,7 +2,7 @@ name: Send poll
 on:
   push:
     branches:
-      - master
+      - main
   schedule:
     - cron: "* * * * *"
 jobs:
