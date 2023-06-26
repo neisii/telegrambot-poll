@@ -1,0 +1,9 @@
+name: "telegrambot-poll"
+author: "neisii"
+description: "Let's check out in gist"
+branding:
+  icon: "activity"
+  color: "blue"
+runs:
+  using: "ubuntu-latest"
+  main: "telegrambot-poll.sh"
