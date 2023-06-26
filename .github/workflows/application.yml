@@ -37,7 +37,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
       - name: Execute Shell
-        uses: neisii/telegrambot-poll@master
+        uses: neisii/telegrambot-poll@main
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
