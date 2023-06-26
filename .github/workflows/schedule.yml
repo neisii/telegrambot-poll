@@ -7,9 +7,9 @@ on:
     - cron: "* * * * *"
 jobs:
   update-gist:
-    runs-on: ubuntu-latest
+    runs-on: docker
     steps:
-      - name: Update gist
+      - name: Send polllll
         uses: neisii/telegrambot-poll@main
         env:
           CHAT_ID: ${{ secrets.CHAT_ID }}
