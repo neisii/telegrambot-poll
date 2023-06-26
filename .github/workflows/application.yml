@@ -33,11 +33,11 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
     - name: Run script file
-      uses: neisii/telegrambot-poll@main
-      run: |
-         chmod +x ./public/telegram-poll.sh
-         ./public/telegram-poll.sh
-      shell: bash
+#       uses: neisii/telegrambot-poll@main
+#       run: |
+#          chmod +x ./public/telegram-poll.sh
+#          ./public/telegram-poll.sh
+#       shell: bash
       env:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
